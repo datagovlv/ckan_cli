@@ -1,0 +1,10 @@
+{
+    "result": {
+        "frequency": "http://publications.europa.eu/mdr/authority/frequency/DAILY", 
+        "id": "d1819200-121a-4452-8868-34f2c2a898c1", 
+        "metadata_modified": "2019-08-06T06:39:18.422714", 
+        "name": "cli",
+        "title": "CKAN CLI test"
+    }, 
+    "success": true
+}

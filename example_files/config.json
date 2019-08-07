@@ -1,0 +1,19 @@
+{
+    "ckan_api":{
+        "api_key":"YOUR_CKAN_API_KEY",
+        "url":"https://data.gov.lv/api/3/"
+    },
+    "email_server": {
+            "address": "smtp.yourdomain.com",
+            "port": "25",
+            "ssl": false,
+            "smtp_user": null,
+            "smtp_password": null,
+            "sender": "ckancli@data.gov.lv",
+            "subject": "CKAN CLI task summary"
+    },
+    "notification_receiver": {
+            "error": "mail_one@yourdomain.com",
+            "success": "mail_one@yourdomain.com, mail_two@yourdomain.com"
+    }
+}
