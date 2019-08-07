@@ -1,5 +1,9 @@
 # [CKAN CLI](https://github.com/datagovlv/ckan_cli)
 
+[![Gem Version](https://badge.fury.io/rb/ckan_cli.svg)][gem]
+
+[gem]: http://badge.fury.io/rb/ckan_cli
+
 > CKAN on your command line. Use your terminal to validate and publish resources to CKAN. Works with CKAN API.
 
 ## Installation

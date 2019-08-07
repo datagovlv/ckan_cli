@@ -14,8 +14,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/datagovlv/ckan_cli"
 
   spec.files         = Dir['lib/**/*']
-  spec.files        += Dir['bin/*', 'ckan_cli.gemspec']
-  spec.files        += Dir['README.md', 'LICENSE.txt', 'Rakefile']
+  spec.files        += Dir['bin/*']
+  spec.files        += Dir['exe/*']
+  spec.files        += Dir['ckan_cli.gemspec', 'README.md', 'LICENSE.txt', 'Rakefile']
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
