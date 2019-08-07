@@ -6,6 +6,8 @@
 
 > CKAN on your command line. Use your terminal to validate and publish resources to CKAN. Works with CKAN API.
 
+![Interface](https://github.com/datagovlv/ckan_cli/raw/master/assets/interface.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
