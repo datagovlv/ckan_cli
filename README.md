@@ -1,6 +1,12 @@
 # [CKAN CLI](https://github.com/datagovlv/ckan_cli)
 
+[![Gem Version](https://badge.fury.io/rb/ckan_cli.svg)][gem]
+
+[gem]: http://badge.fury.io/rb/ckan_cli
+
 > CKAN on your command line. Use your terminal to validate and publish resources to CKAN. Works with CKAN API. Developed and adjusted for Latvian open data portal (Comprehensive Knowledge Archive Network).
+
+![Interface](https://github.com/datagovlv/ckan_cli/raw/master/assets/interface.png)
 
 ## Installation
 
