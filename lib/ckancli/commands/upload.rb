@@ -88,7 +88,7 @@ module Ckancli
                 [:stream, output: File.open(File.join(@dir, "output.log"), "a")]
               ]
             end
-          rescue StandartError => e
+          rescue StandardError => e
             return_error "Could not initialize logger", e 
           end
 
@@ -238,7 +238,6 @@ module Ckancli
           begin
             mail = Mail.new
             mail[:from] = @mail_server["sender"]
-            mail[:to] = @mail_receivers["error"]
             mail[:subject] = @mail_server["subject"]
             mail.delivery_method :smtp, { 
               :address              => @mail_server["address"],
@@ -252,17 +251,22 @@ module Ckancli
   
             # message
             msg = "CKAN CLI task completed.\r\n\r\n#{@resources.length} files processed"
+            has_errors = false
 
             # attachments
             @resources.each do |res|
               msg = "#{msg}\r\n-  #{File.basename(res[:path])}"
               if !res[:summary].nil?
                 msg = "#{msg} (#{res[:summary][:errors].length} errors, #{res[:summary][:warnings].length} warnings)"
+                if res[:summary][:errors].length > 0
+                  has_errors = true
+                end
               end
               mail.add_file :filename => File.basename(res[:path] + ".log"), :content => File.read(res[:path] + ".log")
             end
             msg = "#{msg}\r\n\r\nLog files attached."
             mail[:body] = msg
+            mail[:to] = has_errors ? @mail_receivers["error"] : @mail_receivers["success"]
 
             mail.deliver!
           rescue StandardError => e
