@@ -34,6 +34,66 @@ To see help do
 $ ckancli.rb help
 ```
 
+## Commands and options
+
+> All available commands and options are also described in command line help.
+
+### Basic usage
+
+Mandatory options for CSV upload are:
+- directory "-d". Local path to file/directory or URL to online resource (starting with http or https).
+- global configuration "-c". Path to global configuration file. Path should be absolute or relative to directory option. See configuration section for more information. 
+- resource configuration "-r". Path to resource metadata file. Path should be absolute or relative to directory option. See configuration section for more information. 
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json
+```
+
+### Validation
+
+To validate CSV resources before uploading, use validation schema option:
+- validation schema "-v". Path to JSON validation schema file. Path should be absolute or relative to directory option. See configuration section for more information.
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -v schema.json
+```
+
+### Ignore file extensions
+
+By default, CKAN CLI processes only CSV files. To process all files in direcotry, ignoring extension, use ignore extension option:
+- ignore extension "-i". If set, all files in specified directory will be processed.
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -i
+```
+
+### Overwriting existing resources
+
+By default, CKAN CLI will not overwrite resources if the same is found by resource identifier. To overwrite existing resource, use overwrite option:
+- overwrite "-w". If set, existing resource will be overwritten.
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -w
+```
+
+### Updating modified date
+
+To automatically set resources modified date in CKAN, use update modified option:
+- update modified "-m". If set, resources metadata field "modified date" will be updated to current date.
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -m
+```
+
+### Updating package metadata
+
+To also update package metadata, use dataset configuration option:
+- package configuration "-p". Path to package metadata file. Path should be absolute or relative to directory option. See configuration section for more information. 
+
+```shell
+$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -p package.json
+```
+
 ## Configuration
 
 > Example files including schemas and configurations are located in 'example_files' directory.
@@ -66,7 +126,9 @@ Contains configuration for CKAN API and e-mail notifications (sections "email_se
 
 ### Resource configuration
 
-Contains configuration for resource metadata (parameters as specified in CKAN API guidelines). If resource name is not specified, file name will be used. If resource identifier is not specified, new resource will be created.
+Contains configuration for resource metadata (parameters as specified in CKAN API guidelines). Specified parameters will be passed to CKAN API with resource file. 
+- If resource name is not specified, file name will be used. 
+- If resource identifier is not specified, new resource will be created.
 
 ```javascript
 {
