@@ -114,6 +114,7 @@ module Ckancli
                 :path => r,
                 :valid => true, 
                 :summary => nil, 
+                :error => nil,
                 :log_file => File.open(File.join(@dir, "#{File.basename(r)}.log"), "w"), 
                 :log => nil 
               } 
@@ -217,8 +218,10 @@ module Ckancli
 
               if !exception.nil?
                 res[:log].error msg, exception
+                res[:error] = msg
               elsif !msg.nil?
                 res[:log].info msg
+                res[:error] = msg
               else 
                 res[:log].info "OK - Validation successfull"
               end
@@ -256,8 +259,11 @@ module Ckancli
             # attachments
             @resources.each do |res|
               msg = "#{msg}\r\n-  #{File.basename(res[:path])}"
-              if !res[:summary].nil?
-                msg = "#{msg} (#{res[:summary][:errors].length} errors, #{res[:summary][:warnings].length} warnings)"
+              if !res[:error].nil?
+                msg = "#{msg} (#{res[:error]})"
+                has_errors = true
+              elsif !res[:summary].nil?
+                msg = "#{msg} (#{res[:summary][:errors].length} validation errors, #{res[:summary][:warnings].length} validation warnings)"
                 if res[:summary][:errors].length > 0
                   has_errors = true
                 end
@@ -319,6 +325,7 @@ module Ckancli
 
               if !ok
                 res[:log].error msg
+                res[:error] = msg
               else
                 res[:log].info "OK - upload successfull"
               end
