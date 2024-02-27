@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mail", "~> 2.7.1"
   spec.add_dependency "colorize", "~> 1.1.0"
   spec.add_dependency "pastel", "~> 0.8"
+  spec.add_dependency "activesupport", "~> 7.0.8"
 
   spec.add_development_dependency "bundler", "~> 2.5"
   spec.add_development_dependency "rake", "~> 10.0"
