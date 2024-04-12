@@ -1,8 +1,5 @@
 # [CKAN CLI](https://github.com/datagovlv/ckan_cli)
 
-[![Gem Version](https://badge.fury.io/rb/ckan_cli.svg)][gem]
-
-[gem]: http://badge.fury.io/rb/ckan_cli
 
 > CKAN on your command line. Use your terminal to validate and publish resources to CKAN. Works with CKAN API. Developed and adjusted for Latvian open data portal (Comprehensive Knowledge Archive Network).
 
@@ -10,9 +7,67 @@
 
 ## Installation
 
-Install Ruby Gem yourself:
+### Installing Ruby
 
-    $ gem install ckan_cli
+#### Windows
+
+##### Option 1: RubyInstaller
+
+1. Visit [RubyInstaller](https://rubyinstaller.org/) website.
+2. Download the latest version of RubyInstaller and DevKit.
+3. Run the installer, select "Add Ruby executables to your PATH" and click Install.
+4. Follow the installation instructions.
+5. Open Command Prompt or PowerShell and type `ruby --version` to verify the installation.
+
+##### Option 2: Chocolatey
+
+1. Install Chocolatey if you haven't already. Visit [Chocolatey](https://chocolatey.org/) for instructions.
+2. Open Command Prompt or PowerShell as Administrator.
+3. Run the following command to install Ruby: `choco install ruby -y`.
+4. After installation, type `ruby --version` to verify.
+
+#### Linux
+
+##### Option 1: Using Package Manager
+
+###### Ubuntu/Debian
+
+1. Open Terminal.
+2. Run `sudo apt update` to update package lists.
+3. Install Ruby by running `sudo apt install ruby-full`.
+4. Once installed, type `ruby --version` to verify.
+
+###### CentOS/Fedora
+
+1. Open Terminal.
+2. Run `sudo yum update` to update package lists.
+3. Install Ruby by running `sudo yum install ruby`.
+4. Once installed, type `ruby --version` to verify.
+
+##### Option 2: Using RVM (Ruby Version Manager)
+
+1. Open Terminal.
+2. Install RVM by running `\curl -sSL https://get.rvm.io | bash -s stable`.
+3. Close and reopen Terminal to start using RVM.
+4. Install Ruby using RVM: `rvm install ruby`.
+5. Set Ruby version as default: `rvm use ruby --default`.
+6. Verify installation with `ruby --version`.
+
+
+### Clone code from github
+
+```shell
+git clone https://github.com/datagovlv/ckan_cli.git
+```
+### Install ruby project dependency
+
+```shell
+bundle install
+```
+### libcurl for windows
+
+For Windows OS copy libcurl dll from \ext\ git directory to Ruby executables directory (e.g. 'C:\Ruby26-x64\bin\'). Rename  libcurl-32bit.dll ->  libcurl.dll ir  libcurl-64bit.dll ->libcurl.dll
+
 
 ## Usage
 
@@ -192,12 +247,6 @@ CSV files can be validated against a schema. The structure currently follows [JS
 	]
 }
 ```
-
-## Known issues for windows users
-
-### Error "Could not open library 'libcurl.dll': The specified module could not be found.".
-
-If this error is ocurring, copy file '\ext\libcurl.dll' to Ruby executables directory (e.g. 'C:\Ruby26-x64\bin\').
 
 ## For developers
 
