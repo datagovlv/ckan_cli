@@ -26,6 +26,9 @@
 3. Run the following command to install Ruby: `choco install ruby -y`.
 4. After installation, type `ruby --version` to verify.
 
+##### Before Proceeding:
+Windows users need to install [MSYS2](https://www.msys2.org) before starting the installation process.
+
 #### Linux
 
 ##### Option 1: Using Package Manager
@@ -55,12 +58,14 @@
 
 
 ### Clone code from github
-
+Navigate to the directory where you want to install ckan_cli, then run the following command:
 ```shell
 git clone https://github.com/datagovlv/ckan_cli.git
 ```
-### Install ruby project dependency
+This will clone the ckan_cli repository into your chosen directory.
 
+### Install ruby project dependency
+Navigate to the ckan_cli directory and run:
 ```shell
 bundle install
 ```
@@ -68,25 +73,27 @@ bundle install
 
 For Windows OS copy libcurl dll from \ext\ git directory to Ruby executables directory (e.g. 'C:\Ruby26-x64\bin\'). Rename  libcurl-32bit.dll ->  libcurl.dll ir  libcurl-64bit.dll ->libcurl.dll
 
+Additionally, after following these instructions, you may need to manually execute gem install csvlint to prevent ActiveSupport errors.
+
 
 ## Usage
 
-Run it:
+Navigate to the ckan_cli directory and run:
 
 ```shell
-$ ckancli.rb
+$ exe/ckancli.rb
 ```
 
 For instance, to publish to CKAN all CSV files in folder do
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json
 ```
 
 To see help do
 
 ```shell
-$ ckancli.rb help
+$ exe/ckancli.rb help
 ```
 
 ## Commands and options
@@ -101,7 +108,7 @@ Mandatory options for CSV upload are:
 - resource configuration "-r". Path to resource metadata file. Path should be absolute or relative to directory option. See configuration section for more information. 
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json
 ```
 
 ### Validation
@@ -110,7 +117,7 @@ To validate CSV resources before uploading, use validation schema option:
 - validation schema "-v". Path to JSON validation schema file. Path should be absolute or relative to directory option. See configuration section for more information.
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -v schema.json
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json -v example_files/schema.json
 ```
 
 ### Ignore file extensions
@@ -119,7 +126,7 @@ By default, CKAN CLI processes only CSV files. To process all files in direcotry
 - ignore extension "-i". If set, all files in specified directory will be processed.
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -i
+$ exe/ckancli.rb upload d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json -i
 ```
 
 ### Overwriting existing resources
@@ -128,7 +135,7 @@ By default, CKAN CLI will not overwrite resources if the same is found by resour
 - overwrite "-w". If set, existing resource will be overwritten.
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -w
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json -w
 ```
 
 ### Updating modified date
@@ -137,7 +144,7 @@ To automatically set resources modified date in CKAN, use update modified option
 - update modified "-m". If set, resources metadata field "modified date" will be updated to current date.
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -m
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json -m
 ```
 
 ### Updating package metadata
@@ -146,7 +153,7 @@ To also update package metadata, use dataset configuration option:
 - package configuration "-p". Path to package metadata file. Path should be absolute or relative to directory option. See configuration section for more information. 
 
 ```shell
-$ ckancli.rb upload -d C:\my_csv_collection\ -c config.json -r resource.json -p package.json
+$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json -p example_files/package.json
 ```
 
 ## Configuration
