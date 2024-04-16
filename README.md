@@ -87,7 +87,7 @@ $ exe/ckancli.rb
 For instance, to publish to CKAN all CSV files in folder do
 
 ```shell
-$ exe/ckancli.rb upload -d /tmp/some_csv_file.csv -c example_files/config.json -r example_files/resource.json
+$ exe/ckancli.rb upload -d /tmp/some_csv_file_folder/ -c example_files/config.json -r example_files/resource.json
 ```
 
 To see help do
