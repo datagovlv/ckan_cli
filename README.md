@@ -1,4 +1,4 @@
-# [CKAN CLI](https://github.com/datagovlv/ckan_cli)
+# [CKAN CLI](https://github.com/datagovlv/ckan_cli) For Latvian language read ![README_LV](https://github.com/datagovlv/ckan_cli/raw/master/README_LV.md)
 
 
 > CKAN on your command line. Use your terminal to validate and publish resources to CKAN. Works with CKAN API. Developed and adjusted for Latvian open data portal (Comprehensive Knowledge Archive Network).
