@@ -70,7 +70,7 @@ module Ckancli
       private
         def prepare_options(options)
           @http_resource = true if options[:dir] =~ /^http(s)?/
-
+          
           if @http_resource
             @dir = Dir.pwd
           else
@@ -92,16 +92,27 @@ module Ckancli
             return_error "Could not initialize logger", e 
           end
 
-          begin
-            if @http_resource
-              file_path = File.join(@dir, File.basename(URI.parse(options[:dir]).path))
+			  begin
+				if @http_resource
 
-              File.open(file_path, "wb") do |file|
-                file.write open(options[:dir]).read
-              end
+				uri = URI.parse(options[:dir])  # Make sure to define uri here
+				file_basename = File.basename(uri.path)
+				@dir = Dir.pwd  # Set directory to current working directory
+				file_path = File.join(@dir, file_basename)
 
-              @resources.push(file_path)
-            else
+				begin
+				  # Open the URL and read the content using open-uri
+				  content = URI.open(uri) { |f| f.read }
+				  # Now write this content to a local file
+				  File.open(file_path, "wb") do |file|
+					file.write(content)
+				  end
+				  @resources.push(file_path)
+				rescue Exception => e
+				  puts "Failed to download or save file: #{e.message}"  # Log any errors during file download or save
+				  raise
+				end
+			  else
               if File.directory?(options[:dir])
                 @resources = Dir.entries(options[:dir]).select{ |f| File.file?(File.join(options[:dir], f)) && (options[:ignoreextension] || File.extname(f).downcase == ".csv") }.map { |f| File.join(options[:dir], f) }
               else
