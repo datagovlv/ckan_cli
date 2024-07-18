@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     ckan_cli (1.0.2)
+      activesupport (~> 7.0.8)
       colorize (~> 1.1.0)
       csvlint (~> 1.3)
       mail (~> 2.7.1)

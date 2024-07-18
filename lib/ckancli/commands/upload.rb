@@ -10,6 +10,8 @@ require 'net/smtp'
 require 'mail'
 require 'open-uri'
 require 'uri'
+require 'active_support'
+require 'active_support/core_ext'
 
 require_relative '../command'
 require_relative '../../ckanclient/ckanclient'
