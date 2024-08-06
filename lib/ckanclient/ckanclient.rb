@@ -120,10 +120,20 @@ module CkanClient
         else
           @headers.delete(:content_type)
         end
-
-        RestClient.post("#{@url}/action/#{action}", payload, @headers){ |response, request, result|
+        RestClient::Request.execute(
+          method: :post,
+          url: "#{@url}/action/#{action}",
+          payload: payload,
+          headers: @headers,
+          timeout: 360,       # Timeout in seconds for the operation to complete
+          open_timeout: 60,   # Timeout in seconds to wait for the connection to open
+        ){ |response, request, result|
           block.call(response, response.code == 200)
         }
+
+#        RestClient.post("#{@url}/action/#{action}", payload, @headers){ |response, request, result|
+#          block.call(response, response.code == 200)
+#        }
       end
     end
 end
