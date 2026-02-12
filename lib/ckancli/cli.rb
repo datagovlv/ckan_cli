@@ -27,7 +27,7 @@ module Ckancli
     # end
     # map %w(--version -v) => :version
 
-    desc 'upload', 'Processes CSV files and uploads to CKAN API. '
+    desc 'upload', 'Processes CSV files and uploads to CKAN API.'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def upload(*)
